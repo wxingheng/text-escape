@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client'
 import Image from "next/image";
 import { useState } from "react";
@@ -48,7 +49,7 @@ export default function Home() {
       await navigator.clipboard.writeText(convertedText);
       setCopyStatus('已复制！');
       setTimeout(() => setCopyStatus('复制'), 2000);
-    } catch (err) {
+    } catch {
       setCopyStatus('复制失败');
       setTimeout(() => setCopyStatus('复制'), 2000);
     }
@@ -102,7 +103,7 @@ export default function Home() {
               <>
                 <li>在左侧输入框中粘贴您需要转义的文本</li>
                 <li>右侧输入框会自动将文本转换为转义格式</li>
-                <li>支持自动转义换行符（\n）和双引号（\"）</li>
+                <li>支持自动转义换行符（\n）和双引号（&quot;\&quot;&quot;）</li>
               </>
             ) : (
               <>
@@ -152,7 +153,7 @@ export default function Home() {
       <footer className="row-start-3 w-full max-w-7xl mx-auto">
         <div className="border-t pt-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-gray-500">友��链接：</span>
+            <span className="text-gray-500">友情链接：</span>
             <div className="flex flex-wrap gap-4">
               <a
                 className="flex items-center gap-2 text-gray-600 hover:text-blue-500 hover:underline hover:underline-offset-4 transition-colors"

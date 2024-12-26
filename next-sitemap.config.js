@@ -1,10 +1,10 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://your-domain.com',
+  siteUrl: 'https://text-escape.jcommon.top',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   additionalSitemaps: [
-    'https://your-domain.com/baidusitemap.xml',
+    'https://text-escape.jcommon.top/baidusitemap.xml',
   ],
   robotsTxtOptions: {
     policies: [
@@ -20,8 +20,8 @@ module.exports = {
       }
     ],
     additionalSitemaps: [
-      'https://your-domain.com/sitemap.xml',
-      'https://your-domain.com/baidusitemap.xml',
+      'https://text-escape.jcommon.top/sitemap.xml',
+      'https://text-escape.jcommon.top/baidusitemap.xml',
     ],
   },
 } 

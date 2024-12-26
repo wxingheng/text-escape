@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "文本���义工具 - 在线文本转义/反转义",
+    title: "文本转义工具 - 在线文本转义/反转义",
     description: "一个简单易用的在线文本转义工具，支持换行符和双引号的转义与反转义，提供实时预览和一键复制功能。",
-    url: "https://your-domain.com",
+    url: "https://text-escape.jcommon.top",
     siteName: "文本转义工具",
     locale: "zh_CN",
     type: "website",
@@ -43,15 +43,27 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+//   1. Google验证码：
+// 访问 Google Search Console
+// 添加网站属性时，选择"URL 前缀"或"域"验证方式
+// 会得到一个类似 google-site-verification: xxxxxxxxxxxxxxxxxxxxx 的代码
+// 只需填写 xxxxxxxxxxxxxxxxxxxxx 这部分
+// 百度验证码：
+// 访问百度站长平台
+// 添加网站后，选择"HTML标签验证"
+// 会得到一个类似 <meta name="baidu-site-verification" content="xxxxxxxxxxxxxx"/> 的代码
+// 只需填写 xxxxxxxxxxxxxx 这部分
   verification: {
     google: "your-google-site-verification",
-    baidu: "your-baidu-site-verification",
+    other: {
+      'baidu-site-verification': "your-baidu-site-verification",
+    },
   },
   alternates: {
-    canonical: "https://your-domain.com",
+    canonical: "https://text-escape.jcommon.top",
   },
   other: {
-    'mobile-agent': 'format=html5;url=https://your-domain.com'
+    'mobile-agent': 'format=html5;url=https://text-escape.jcommon.top'
   },
 };
 

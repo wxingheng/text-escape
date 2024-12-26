@@ -8,8 +8,8 @@ Allow: /
 Crawl-delay: 1
 
 # Host
-Host: https://your-domain.com
+Host: https://text-escape.jcommon.top
 
 # Sitemaps
-Sitemap: https://your-domain.com/sitemap.xml
-Sitemap: https://your-domain.com/baidusitemap.xml
+Sitemap: https://text-escape.jcommon.top/sitemap.xml
+Sitemap: https://text-escape.jcommon.top/baidusitemap.xml
