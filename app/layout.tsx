@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-site-verification",
     other: {
-      'baidu-site-verification': "your-baidu-site-verification",
+      'baidu-site-verification': "codeva-H5NHS0Mwy9",
     },
   },
   alternates: {
