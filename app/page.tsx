@@ -25,8 +25,21 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col sm:flex-row gap-8 row-start-2 items-start w-full max-w-7xl">
+    <div className="grid grid-rows-[auto_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <header className="w-full max-w-7xl">
+        <h1 className="text-3xl font-bold text-center mb-4">文本转义工具</h1>
+        <div className="bg-blue-50 p-4 rounded-lg mb-8">
+          <h2 className="text-lg font-semibold mb-2">使用说明：</h2>
+          <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <li>在左侧输入框中粘贴您需要转义的文本</li>
+            <li>右侧输入框会自动将文本转换为转义格式</li>
+            <li>支持自动转义换行符（\n）和双引号（\"）</li>
+            <li>点击"复制"按钮可以快速复制转义后的文本</li>
+          </ul>
+        </div>
+      </header>
+
+      <main className="flex flex-col sm:flex-row gap-8 items-start w-full max-w-7xl">
         <div className="flex-1">
           <h2 className="text-lg font-semibold mb-2">输入文本</h2>
           <textarea
@@ -54,6 +67,7 @@ export default function Home() {
           />
         </div>
       </main>
+
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
