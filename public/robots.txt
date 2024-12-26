@@ -1,0 +1,15 @@
+# *
+User-agent: *
+Allow: /
+
+# Baiduspider
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Host
+Host: https://your-domain.com
+
+# Sitemaps
+Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://your-domain.com/baidusitemap.xml
