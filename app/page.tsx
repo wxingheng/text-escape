@@ -56,17 +56,17 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-rows-[auto_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[auto_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)] dark:bg-gray-900">
       <header className="w-full max-w-7xl">
-        <h1 className="text-3xl font-bold text-center mb-4">
+        <h1 className="text-3xl font-bold text-center mb-4 dark:text-white">
           文本转义工具 - 在线文本转义/反转义工具
         </h1>
-        <p className="text-gray-600 text-center mb-4">
+        <p className="text-gray-600 dark:text-gray-300 text-center mb-4">
           免费在线文本转义工具，支持换行符和双引号的转义与反转义，提供实时预览和一键复制功能。无需下载安装，完全免费使用。
         </p>
-        <div className="bg-blue-50 p-4 rounded-lg mb-8">
+        <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-lg mb-8">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">使用说明：</h2>
+            <h2 className="text-lg font-semibold dark:text-white">使用说明：</h2>
             <div className="flex gap-2">
               <button
                 onClick={fillDemoText}
@@ -74,13 +74,13 @@ export default function Home() {
               >
                 来个Demo
               </button>
-              <div className="flex gap-2 bg-white rounded-lg p-1 border border-blue-200">
+              <div className="flex gap-2 bg-white dark:bg-gray-700 rounded-lg p-1 border border-blue-200 dark:border-gray-600">
                 <button
                   onClick={() => setMode('escape')}
                   className={`px-4 py-2 rounded-md transition-colors ${
                     mode === 'escape'
                       ? 'bg-blue-500 text-white'
-                      : 'hover:bg-gray-100'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200'
                   }`}
                 >
                   转义模式
@@ -90,7 +90,7 @@ export default function Home() {
                   className={`px-4 py-2 rounded-md transition-colors ${
                     mode === 'unescape'
                       ? 'bg-blue-500 text-white'
-                      : 'hover:bg-gray-100'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200'
                   }`}
                 >
                   反转义模式
@@ -98,7 +98,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
             {mode === 'escape' ? (
               <>
                 <li>在左侧输入框中粘贴您需要转义的文本</li>
@@ -119,11 +119,11 @@ export default function Home() {
 
       <main className="flex flex-col sm:flex-row gap-8 items-start w-full max-w-7xl">
         <div className="flex-1">
-          <h2 className="text-lg font-semibold mb-2">
+          <h2 className="text-lg font-semibold mb-2 dark:text-white">
             {mode === 'escape' ? '输入文本' : '转义文本'}
           </h2>
           <textarea
-            className="w-full h-[600px] p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full h-[600px] p-4 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-200"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder={mode === 'escape' ? "在此输入文本..." : "在此输入需要反转义的文本..."}
@@ -131,7 +131,7 @@ export default function Home() {
         </div>
         <div className="flex-1">
           <div className="flex justify-between items-center mb-2">
-            <h2 className="text-lg font-semibold">
+            <h2 className="text-lg font-semibold dark:text-white">
               {mode === 'escape' ? '转义后的文本' : '反转义后的文本'}
             </h2>
             <button
@@ -142,7 +142,7 @@ export default function Home() {
             </button>
           </div>
           <textarea
-            className="w-full h-[600px] p-4 border border-gray-300 rounded-lg resize-none bg-gray-50 font-mono text-sm"
+            className="w-full h-[600px] p-4 border border-gray-300 dark:border-gray-600 rounded-lg resize-none bg-gray-50 dark:bg-gray-800 font-mono text-sm dark:text-gray-200"
             value={convertToEscapedFormat(inputText)}
             readOnly
             placeholder={mode === 'escape' ? "转换后的文本将显示在这里..." : "反转义后的文本将显示在这里..."}
@@ -151,12 +151,12 @@ export default function Home() {
       </main>
 
       <footer className="row-start-3 w-full max-w-7xl mx-auto">
-        <div className="border-t pt-4">
+        <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-gray-500">友情链接：</span>
+            <span className="text-gray-500 dark:text-gray-400">友情链接：</span>
             <div className="flex flex-wrap gap-4">
               <a
-                className="flex items-center gap-2 text-gray-600 hover:text-blue-500 hover:underline hover:underline-offset-4 transition-colors"
+                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 hover:underline hover:underline-offset-4 transition-colors"
                 href="https://markdown-to-image-serve.jcommon.top"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -170,7 +170,6 @@ export default function Home() {
                 />
                 Markdown转图片工具
               </a>
-              {/* 可以在这里添加更多友情链接 */}
             </div>
           </div>
         </div>
