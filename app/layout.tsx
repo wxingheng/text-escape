@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 // 会得到一个类似 <meta name="baidu-site-verification" content="xxxxxxxxxxxxxx"/> 的代码
 // 只需填写 xxxxxxxxxxxxxx 这部分
   verification: {
-    google: "your-google-site-verification",
+    google: "72ujeyKSiINNgDo4R4cLJC90hi_BVYEaA0dDjKqAjuc",
     other: {
       'baidu-site-verification': "codeva-H5NHS0Mwy9",
     },

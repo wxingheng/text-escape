@@ -62,7 +62,7 @@ export default function Home() {
           文本转义工具 - 在线文本转义/反转义工具
         </h1>
         <p className="text-gray-600 dark:text-gray-300 text-center mb-4">
-          免费在线文本转义工具，支持换行符和双引号的转义与反转义，提供实时预览和一键复制功能。��需下载安装，完全免费使用。
+          免费在线文本转义工具，支持换行符和双引号的转义与反转义，提供实时预览和一键复制功能。无需下载安装，完全免费使用。
         </p>
         <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-lg mb-8">
           <div className="flex justify-between items-center mb-4">
