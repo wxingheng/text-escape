@@ -62,7 +62,7 @@ export default function Home() {
           文本转义工具 - 在线文本转义/反转义工具
         </h1>
         <p className="text-gray-600 dark:text-gray-300 text-center mb-4">
-          免费在线文本转义工具，支持换行符和双引号的转义与反转义，提供实时预览和一键复制功能。无需下载安装，完全免费使用。
+          免费在线文本转义工具，支持换行符和双引号的转义与反转义，提供实时预览和一键复制功能。��需下载安装，完全免费使用。
         </p>
         <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-lg mb-8">
           <div className="flex justify-between items-center mb-4">
@@ -119,9 +119,11 @@ export default function Home() {
 
       <main className="flex flex-col sm:flex-row gap-8 items-start w-full max-w-7xl">
         <div className="flex-1">
-          <h2 className="text-lg font-semibold mb-2 dark:text-white">
-            {mode === 'escape' ? '输入文本' : '转义文本'}
-          </h2>
+          <div className="h-[34px] mb-2 flex items-center">
+            <h2 className="text-lg font-semibold dark:text-white">
+              {mode === 'escape' ? '输入文本' : '转义文本'}
+            </h2>
+          </div>
           <textarea
             className="w-full h-[600px] p-4 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-200"
             value={inputText}
@@ -130,7 +132,7 @@ export default function Home() {
           />
         </div>
         <div className="flex-1">
-          <div className="flex justify-between items-center mb-2">
+          <div className="h-[34px] mb-2 flex justify-between items-center">
             <h2 className="text-lg font-semibold dark:text-white">
               {mode === 'escape' ? '转义后的文本' : '反转义后的文本'}
             </h2>
