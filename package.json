@@ -1,9 +1,9 @@
 {
-  "name": "text-escape-tool",
+  "name": "text-escape",
   "version": "0.1.0",
   "private": true,
   "description": "一个简单易用的在线文本转义工具，支持换行符和双引号的转义与反转义",
-  "author": "jcommon",
+  "author": "wxingheng",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

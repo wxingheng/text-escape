@@ -1,6 +1,6 @@
-# Next.js 企业级应用开发模板
+# text-escape
 
-> 专业的 Next.js 开发模板，为现代化 Web 应用提供完整解决方案
+> 一个简单易用的在线文本转义工具，支持换行符和双引号的转义与反转义
 
 [![SEO Friendly](https://img.shields.io/badge/SEO-Friendly-green.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
@@ -10,7 +10,7 @@
 
 ## 🌈 在线体验
 
-- 预览地址：[https://text-escape.jcommon.top/m](https://text-escape.jcommon.top)
+- 预览地址：[https://text-escape.jcommon.top](https://text-escape.jcommon.top)
 
 ## ✨ 核心特性
 
@@ -90,4 +90,4 @@ pnpm dev
 
 ## 📝 许可证
 
-MIT © [您的名字]
+MIT © [wxingheng]
