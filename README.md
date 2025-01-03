@@ -8,6 +8,10 @@
 
 这是一个使用 [Next.js](https://nextjs.org) 构建的高性能项目模板，基于 [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) 脚手架创建，并集成了 SEO 优化方案。
 
+## 🌈 在线体验
+
+- 预览地址：[https://text-escape.jcommon.top/m](https://text-escape.jcommon.top)
+
 ## ✨ 核心特性
 
 - 🔍 SEO 优化配置
