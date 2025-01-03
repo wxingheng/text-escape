@@ -1,4 +1,7 @@
 # *
 User-agent: *
 Allow: /
-Sitemap: https://text-escape.jcommon.top/sitemap.xml
+Sitemap: https://yoursite.com/sitemap.xml
+
+# 增加爬虫抓取频率
+Crawl-delay: 1

@@ -1,18 +1,24 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '您的网站标题 | 核心关键词',
-  description: '详细的网站描述，包含重要关键词，建议150-160字符',
-  keywords: '关键词1, 关键词2, 关键词3',
-  authors: [{ name: '您的名字', url: 'https://your-website.com' }],
-  creator: '您的名字',
-  publisher: '您的组织名称',
+  title: {
+    template: '文本转义工具 - 在线文本转义工具',
+    default: '文本转义工具 - 在线文本转义工具',
+  },
+  description: '一个简单易用的在线文本转义工具，支持换行符和双引号的转义与反转义',
+  keywords: ['文本转义', '文本转义工具', '在线文本转义工具'],
+  authors: [{ name: 'jcommon' }],
+  creator: 'jcommon',
+  publisher: 'jcommon',
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
   icons: {
@@ -25,16 +31,15 @@ export const metadata: Metadata = {
     initialScale: 1,
   },
   openGraph: {
-    title: '您的网站标题',
-    description: '网站描述',
+    title: '文本转义工具 - 在线文本转义工具',
+    description: '一个简单易用的在线文本转义工具，支持换行符和双引号的转义与反转义',
     url: 'https://text-escape.jcommon.top',
-    siteName: '网站名称',
+    siteName: '文本转义工具 - 在线文本转义工具',
     images: [
       {
-        url: 'https://你的域名/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: '网站预览图片描述'
       }
     ],
     locale: 'zh_CN',
@@ -42,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '您的网站标题',
-    description: '网站描述',
-    images: ['https://你的域名/og-image.jpg'],
+    title: '文本转义工具 - 在线文本转义工具',
+    description: '一个简单易用的在线文本转义工具，支持换行符和双引号的转义与反转义',
+    images: ['https://text-escape.jcommon.top/og-image.png'],
   },
   verification: {
     google: '您的 Google Search Console 验证码',

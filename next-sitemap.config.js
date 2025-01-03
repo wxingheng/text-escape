@@ -1,27 +1,14 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://text-escape.jcommon.top',
+  siteUrl: 'https://yoursite.com',
   generateRobotsTxt: true,
-  generateIndexSitemap: false,
-  additionalSitemaps: [
-    'https://text-escape.jcommon.top/baidusitemap.xml',
-  ],
+  changefreq: 'daily',
+  priority: 0.7,
+  sitemapSize: 7000,
+  exclude: ['/server-sitemap.xml'],
   robotsTxtOptions: {
-    policies: [
-      {
-        userAgent: '*',
-        allow: '/',
-      },
-      // 百度爬虫特殊规则
-      {
-        userAgent: 'Baiduspider',
-        allow: '/',
-        crawlDelay: 1,
-      }
-    ],
     additionalSitemaps: [
-      'https://text-escape.jcommon.top/sitemap.xml',
-      'https://text-escape.jcommon.top/baidusitemap.xml',
+      'https://yoursite.com/server-sitemap.xml',
     ],
   },
 } 
