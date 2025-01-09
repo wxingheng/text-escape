@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "文本转义工具 - 在线文本转义/反转义工具",
   description: "文本转义工具是一款免费的在线文本转义/反转义工具，支持换行符(\\n)和双引号(\")的转义与反转义，提供实时预览和一键复制功能。适用于JSON字符串、配置文件等场景的文本处理。完全免费，无需下载安装。",
-  keywords: ["文本转义工具", "在线转义工具", "字符串转义", "JSON转义", "免费工具", "在线工具", "文本处理", "转义工具", "反转义", "换行符转义", "双引号转义"],
+  keywords: ["文本转义工具", "在线转义工具", "字符串转义", "JSON转义", "文本换行", "文本换行解析", "转义工具", "反转义", "换行符转义", "双引号转义", "html 换行转换", "postman格式转换"],
   authors: [{ name: "jcommon" }],
   creator: "jcommon",
   publisher: "jcommon",
