@@ -106,7 +106,7 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-rows-[auto_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)] dark:bg-gray-900">
+    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)] dark:bg-gray-900">
       <header className="w-full max-w-7xl">
         <h1 className="text-3xl font-bold text-center mb-4 dark:text-white">
           文本转义工具 - 在线文本转义/反转义工具
@@ -238,10 +238,50 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="row-start-3 w-full max-w-7xl mx-auto">
+      <footer className="w-full max-w-7xl">
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold mb-4 dark:text-white">API 使用说明</h3>
+          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg space-y-6">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                接口地址：<code className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">/api/convert</code>
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">请求方法：POST</p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600 dark:text-gray-300">请求参数：</p>
+              <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+{`{
+  "text": "要转换的文本",
+  "mode": "escape|unescape|jsonParse|jsonStringify"
+}`}
+              </pre>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600 dark:text-gray-300">示例：</p>
+              <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+{`curl -X POST http://your-domain/api/convert \\
+  -H "Content-Type: application/json" \\
+  -d '{"text":"Hello\\nWorld","mode":"unescape"}'`}
+              </pre>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600 dark:text-gray-300">返回格式：</p>
+              <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+{`{
+  "result": "转换后的文本"
+}`}
+              </pre>
+            </div>
+          </div>
+        </div>
+
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-gray-500 dark:text-gray-400">友情链接：</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-gray-500 dark:text-gray-400 shrink-0">友情链接：</span>
             <div className="flex flex-wrap gap-4">
               <a
                 className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 hover:underline hover:underline-offset-4 transition-colors"
@@ -256,7 +296,7 @@ export default function Home() {
                   width={16}
                   height={16}
                 />
-                Markdown转图片工具
+                <span>Markdown转图片工具</span>
               </a>
             </div>
           </div>
