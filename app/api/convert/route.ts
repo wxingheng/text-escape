@@ -55,14 +55,20 @@ export async function POST(request: NextRequest) {
     // 参数验证
     if (text === undefined || text === null) {
       return NextResponse.json(
-        { error: '缺少必要的 text 参数' },
+        { 
+          success: false,
+          error: '缺少必要的 text 参数' 
+        },
         { status: 400 }
       );
     }
 
     if (!mode || !['escape', 'unescape', 'jsonParse', 'jsonStringify'].includes(mode)) {
       return NextResponse.json(
-        { error: '缺少必要的 mode 参数或格式不正确' },
+        { 
+          success: false,
+          error: '缺少必要的 mode 参数或格式不正确' 
+        },
         { status: 400 }
       );
     }
@@ -70,10 +76,16 @@ export async function POST(request: NextRequest) {
     // 执行转换
     const result = convertText(text, mode);
 
-    return NextResponse.json({ result });
+    return NextResponse.json({ 
+      success: true,
+      result 
+    });
   } catch (error) {
     return NextResponse.json(
-      { error: (error as Error).message },
+      { 
+        success: false,
+        error: (error as Error).message 
+      },
       { status: 500 }
     );
   }
