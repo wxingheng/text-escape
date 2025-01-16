@@ -25,19 +25,22 @@ const deepParseJSON = (text: string | object): any => {
 };
 
 // 转换函数
-const convertText = (text: string, mode: 'escape' | 'unescape' | 'jsonParse' | 'jsonStringify') => {
+const convertText = (text: string | object, mode: 'escape' | 'unescape' | 'jsonParse' | 'jsonStringify') => {
+  // 如果输入是对象，先转换为字符串
+  const inputText = typeof text === 'object' ? JSON.stringify(text) : text;
+
   try {
     switch (mode) {
       case 'escape':
-        return text.replace(/\n/g, '\\n').replace(/"/g, '\\"');
+        return inputText.replace(/\n/g, '\\n').replace(/"/g, '\\"');
       case 'unescape':
-        return text.replace(/\\n/g, '\n').replace(/\\"/g, '"');
+        return inputText.replace(/\\n/g, '\n').replace(/\\"/g, '"');
       case 'jsonParse':
-        return JSON.stringify(deepParseJSON(text), null, 2);
+        return deepParseJSON(inputText);
       case 'jsonStringify':
-        return JSON.stringify(deepParseJSON(text));
+        return JSON.stringify(deepParseJSON(inputText));
       default:
-        return text;
+        return inputText;
     }
   } catch (error) {
     throw new Error(`转换错误: ${(error as Error).message}`);
@@ -50,9 +53,9 @@ export async function POST(request: NextRequest) {
     const { text, mode } = body;
 
     // 参数验证
-    if (!text || typeof text !== 'string') {
+    if (text === undefined || text === null) {
       return NextResponse.json(
-        { error: '缺少必要的 text 参数或格式不正确' },
+        { error: '缺少必要的 text 参数' },
         { status: 400 }
       );
     }

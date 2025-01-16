@@ -105,6 +105,14 @@ export default function Home() {
     }
   };
 
+  // 在组件内部添加一个获取当前域名的函数
+  const getCurrentDomain = () => {
+    if (typeof window !== 'undefined') {
+      return window.location.origin;
+    }
+    return 'http://localhost:3001'; // 默认值
+  };
+
   return (
     <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)] dark:bg-gray-900">
       <header className="w-full max-w-7xl">
@@ -261,11 +269,86 @@ export default function Home() {
 
             <div className="space-y-2">
               <p className="text-sm text-gray-600 dark:text-gray-300">示例：</p>
-              <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-{`curl -X POST http://your-domain/api/convert \\
+              <div className="space-y-4">
+                {/* 文本转义示例 */}
+                <div>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">1. 文本转义（escape）：</p>
+                  <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+{`curl -X POST ${getCurrentDomain()}/api/convert \\
   -H "Content-Type: application/json" \\
-  -d '{"text":"Hello\\nWorld","mode":"unescape"}'`}
-              </pre>
+  -d '{
+    "text": "Hello\\nWorld\\n\\"Quote\\"",
+    "mode": "escape"
+  }'
+
+# 返回结果：
+{
+  "result": "Hello\\\\nWorld\\\\n\\\\\\"Quote\\\\\\""
+}`}
+                  </pre>
+                </div>
+
+                {/* 文本反转义示例 */}
+                <div>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">2. 文本反转义（unescape）：</p>
+                  <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+{`curl -X POST ${getCurrentDomain()}/api/convert \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "text": "Hello\\\\nWorld\\\\n\\\\\\"Quote\\\\\\"",
+    "mode": "unescape"
+  }'
+
+# 返回结果：
+{
+  "result": "Hello\\nWorld\\n\\"Quote\\""
+}`}
+                  </pre>
+                </div>
+
+                {/* JSON 格式化示例 */}
+                <div>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">3. JSON 格式化（jsonParse）：</p>
+                  <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+{`curl -X POST ${getCurrentDomain()}/api/convert \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "text": "{\\"name\\":\\"测试\\",\\"data\\":{\\"nested\\":{\\"value\\":123}}}",
+    "mode": "jsonParse"
+  }'
+
+# 返回结果：
+{
+  "result": {
+    "name": "测试",
+    "data": {
+      "nested": {
+        "value": 123
+      }
+    }
+  }
+}`}
+                  </pre>
+                </div>
+
+                {/* JSON 压缩示例 */}
+                <div>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">4. JSON 压缩（jsonStringify）：</p>
+                  <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+{`curl -X POST ${getCurrentDomain()}/api/convert \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "text": "{\\n  \\"name\\": \\"测试\\",\\n  \\"data\\": {\\n    \\"nested\\": {\\n      \\"value\\": 123\\n    }\\n  }\\n}",
+    "mode": "jsonStringify"
+  }'
+
+# 返回结果：
+{
+  "result": "{\\"name\\":\\"测试\\",\\"data\\":{\\"nested\\":{\\"value\\":123}}}"
+}`}
+                  </pre>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-2">
