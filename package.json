@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "vercel-build": "npm install --legacy-peer-deps && next build"
   },
   "dependencies": {
     "next": "15.1.2",
