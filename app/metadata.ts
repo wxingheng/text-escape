@@ -48,12 +48,12 @@ export const metadata: Metadata = {
     ],
     locale: 'zh_CN',
     type: 'website',
-    article: {
-      publishedTime: new Date().toISOString(),
-      modifiedTime: new Date().toISOString(),
-      section: '开发工具',
-      tags: ['文本转义', '开发工具', '在线工具']
-    }
+    // article: {
+    //   publishedTime: new Date().toISOString(),
+    //   modifiedTime: new Date().toISOString(),
+    //   section: '开发工具',
+    //   tags: ['文本转义', '开发工具', '在线工具']
+    // }
   },
   twitter: {
     card: 'summary_large_image',
@@ -63,8 +63,8 @@ export const metadata: Metadata = {
   },
   verification: {
     google: '您的 Google Search Console 验证码',
-    baidu: '您的百度站长验证码',
-    bing: '您的 Bing Webmaster 验证码',
+    // baidu: '您的百度站长验证码',
+    // bing: '您的 Bing Webmaster 验证码',
     yandex: '您的 Yandex 验证码'
   },
   alternates: {

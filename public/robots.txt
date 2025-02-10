@@ -1,7 +1,16 @@
 # *
 User-agent: *
 Allow: /
-Sitemap: https://yoursite.com/sitemap.xml
+Disallow: /api/
+Disallow: /admin/
 
-# 增加爬虫抓取频率
+# Baiduspider
+User-agent: Baiduspider
+Allow: /
 Crawl-delay: 1
+
+# Host
+Host: https://text-escape.jcommon.top
+
+# Sitemaps
+Sitemap: https://text-escape.jcommon.top/sitemap.xml
