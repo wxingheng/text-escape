@@ -10,7 +10,6 @@
     "start": "next start",
     "lint": "next lint",
     "postbuild": "next-sitemap",
-    "prepare": "husky install",
     "version-auto": "jcommon-node -va -t"
   },
   "dependencies": {
