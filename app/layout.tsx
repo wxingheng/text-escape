@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import GitHubLink from './components/GitHubLink';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,7 +64,8 @@ export const metadata: Metadata = {
     canonical: "https://text-escape.jcommon.top",
   },
   other: {
-    'mobile-agent': 'format=html5;url=https://text-escape.jcommon.top'
+    'mobile-agent': 'format=html5;url=https://text-escape.jcommon.top',
+    'github-repo': 'https://github.com/wxingheng/text-escape'
   },
 };
 
@@ -91,6 +93,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
+        <GitHubLink />
         {children}
       </body>
     </html>
