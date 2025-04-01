@@ -1,6 +1,6 @@
 {
   "name": "text-escape",
-  "version": "0.1.0",
+  "version": "1.1.2",
   "private": true,
   "description": "一个简单易用的在线文本转义工具，支持换行符和双引号的转义与反转义",
   "author": "wxingheng",
@@ -9,15 +9,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "prepare": "husky install",
+    "version-auto": "jcommon-node -va -t"
   },
   "dependencies": {
     "next": "15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^3.4.1"
-    },
+  },
   "devDependencies": {
+    "jcommon-node": "^1.0.14",
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -30,5 +33,6 @@
   },
   "engines": {
     "node": "20"
-  }
+  },
+  "time": "250401164732"
 }
