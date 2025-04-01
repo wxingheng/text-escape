@@ -7,7 +7,7 @@ import pkg from '../../package.json';
 declare global {
   interface Window {
     _hmt?: {
-      push: (args: any[]) => void;
+      push: (args: [string, ...unknown[]]) => void;
     };
   }
 }
