@@ -64,6 +64,8 @@ export default function Home() {
       setInputText(JSON.stringify(demoText.jsonStringify, null, 2));
     } else if (mode === 'tryParseJson') {
       setInputText(demoText.tryParseJson);
+    } else if (mode === 'fetchToCurl') {
+      setInputText(demoText.fetchToCurl);
     } else {
       setInputText(demoText[mode]);
     }
@@ -268,7 +270,7 @@ export default function Home() {
 
       <main className="flex flex-col sm:flex-row gap-8 items-start w-full max-w-7xl">
         {mode === 'fetchToCurl' ? (
-          <FetchToCurl demoText={demoText.fetchToCurl} />
+          <FetchToCurl demoText={inputText} />
         ) : mode === 'tryParseJson' ? (
           <JsonParser demoText={inputText} />
         ) : (
