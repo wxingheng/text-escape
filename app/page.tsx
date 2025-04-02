@@ -4,11 +4,12 @@
 'use client'
 import Image from "next/image";
 import { useState } from "react";
+import FetchToCurl from './components/FetchToCurl';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
   const [copyStatus, setCopyStatus] = useState('复制');
-  const [mode, setMode] = useState<'escape' | 'unescape' | 'jsonParse' | 'jsonStringify'>('escape');
+  const [mode, setMode] = useState<'escape' | 'unescape' | 'jsonParse' | 'jsonStringify' | 'fetchToCurl'>('escape');
 
   // 示例文本
   const demoText = {
@@ -86,6 +87,8 @@ export default function Home() {
           return JSON.stringify(deepParseJSON(text), null, 2);
         case 'jsonStringify':
           return JSON.stringify(deepParseJSON(text));
+        case 'fetchToCurl':
+          return text;
         default:
           return text;
       }
@@ -175,6 +178,16 @@ export default function Home() {
                 >
                   JSON压缩
                 </button>
+                <button
+                  onClick={() => setMode('fetchToCurl')}
+                  className={`px-4 py-2 rounded-md transition-colors ${
+                    mode === 'fetchToCurl'
+                      ? 'bg-blue-500 text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200'
+                  }`}
+                >
+                  Fetch转Curl
+                </button>
               </div>
             </div>
           </div>
@@ -197,6 +210,12 @@ export default function Home() {
                 <li>右侧将显示格式化后的 JSON 内容</li>
                 <li>自动进行语法检查，并显示错误信息</li>
               </>
+            ) : mode === 'jsonStringify' ? (
+              <>
+                <li>在左侧输入框中粘贴需要压缩的 JSON 内容</li>
+                <li>右侧将显示压缩后的 JSON 字符串</li>
+                <li>自动移除空格和换行符</li>
+              </>
             ) : (
               <>
                 <li>在左侧输入框中粘贴需要压缩的 JSON 内容</li>
@@ -210,21 +229,25 @@ export default function Home() {
       </header>
 
       <main className="flex flex-col sm:flex-row gap-8 items-start w-full max-w-7xl">
-        <div className="flex-1">
-          <div className="h-[34px] mb-2 flex items-center">
-            <h2 className="text-lg font-semibold dark:text-white">
-              {mode === 'escape' ? '输入文本' : 
-               mode === 'unescape' ? '转义文本' :
-               mode === 'jsonParse' ? 'JSON字符串' : 'JSON内容'}
-            </h2>
+        {mode === 'fetchToCurl' ? (
+          <FetchToCurl />
+        ) : (
+          <div className="flex-1">
+            <div className="h-[34px] mb-2 flex items-center">
+              <h2 className="text-lg font-semibold dark:text-white">
+                {mode === 'escape' ? '输入文本' : 
+                 mode === 'unescape' ? '转义文本' :
+                 mode === 'jsonParse' ? 'JSON字符串' : 'JSON内容'}
+              </h2>
+            </div>
+            <textarea
+              className="w-full h-[600px] p-4 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-200"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              placeholder={mode === 'escape' ? "在此输入文本..." : "在此输入需要反转义的文本..."}
+            />
           </div>
-          <textarea
-            className="w-full h-[600px] p-4 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-200"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder={mode === 'escape' ? "在此输入文本..." : "在此输入需要反转义的文本..."}
-          />
-        </div>
+        )}
         <div className="flex-1">
           <div className="h-[34px] mb-2 flex justify-between items-center">
             <h2 className="text-lg font-semibold dark:text-white">
