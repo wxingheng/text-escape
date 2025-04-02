@@ -3,18 +3,36 @@
 import { useState } from 'react';
 import { fetchToCurl } from '../utils/fetchToCurl';
 
-export default function FetchToCurl() {
+interface FetchToCurlProps {
+  demoText?: string;
+}
+
+export default function FetchToCurl({ demoText }: FetchToCurlProps) {
   const [fetchCode, setFetchCode] = useState('');
   const [curlCommand, setCurlCommand] = useState('');
   const [error, setError] = useState('');
 
-  const convertToCurl = () => {
-    try {
-      // 清除之前的错误
-      setError('');
+  // 格式化代码的辅助函数
+  const formatCode = (code: string) => {
+    return code.split('\n')
+      .map(line => line.trim())
+      .filter(line => line)  // 移除空行
+      .join('');  // 合并为单行
+  };
 
-      // 提取 fetch 参数
-      const matches = fetchCode.match(/fetch\(['"]([^'"]+)['"](?:,\s*({[\s\S]+?}))?\)/);
+  const handleDemo = () => {
+    if (demoText) {
+      setFetchCode(demoText);
+      // 自动转换 demo 文本
+      handleConvert(demoText);
+    }
+  };
+
+  const handleConvert = (code: string = fetchCode) => {
+    try {
+      setError('');
+      const formattedCode = formatCode(code);
+      const matches = formattedCode.match(/fetch\(['"]([^'"]+)['"],\s*({.+})\)/);
       if (!matches) {
         throw new Error('无效的 fetch 代码格式');
       }
@@ -23,7 +41,6 @@ export default function FetchToCurl() {
       let options = {};
       
       if (optionsStr) {
-        // 使用 Function 构造器安全地解析 options 对象
         options = new Function(`return ${optionsStr}`)();
       }
 
@@ -45,27 +62,33 @@ export default function FetchToCurl() {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4 space-y-4">
-      <div className="space-y-2">
+      <div className="flex justify-between items-center mb-4">
         <label className="block text-sm font-medium text-gray-700">
           输入 fetch 代码：
         </label>
-        <textarea
-          className="w-full h-32 p-2 border rounded-md font-mono text-sm"
-          value={fetchCode}
-          onChange={(e) => setFetchCode(e.target.value)}
-          placeholder={`fetch('https://api.example.com/data', {
+        <button
+          onClick={handleDemo}
+          className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+        >
+          Try Example
+        </button>
+      </div>
+      <textarea
+        className="w-full h-32 p-2 border rounded-md font-mono text-sm"
+        value={fetchCode}
+        onChange={(e) => setFetchCode(e.target.value)}
+        placeholder={`fetch('https://api.example.com/data', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({ key: 'value' })
 })`}
-        />
-      </div>
+      />
 
       <div className="flex space-x-4">
         <button
-          onClick={convertToCurl}
+          onClick={() => handleConvert()}
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
         >
           转换为 curl

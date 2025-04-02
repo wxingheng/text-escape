@@ -40,7 +40,21 @@ export default function Home() {
       position: { x: 100, y: 200 },
       isJumping: true
     },
-    fetchToCurl: '',
+    fetchToCurl: `fetch('https://api.example.com/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer token123'
+      },
+      body: JSON.stringify({
+        name: '示例请求',
+        data: {
+          key: 'value',
+          number: 123,
+          array: [1, 2, 3]
+        }
+      })
+    })`,
     tryParseJson: '```json\n{"name": "示例","value": 123}\n```'
   };
 
@@ -140,7 +154,7 @@ export default function Home() {
                 onClick={fillDemoText}
                 className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
               >
-                来个Demo
+                Try Example
               </button>
               <div className="flex gap-2 bg-white dark:bg-gray-700 rounded-lg p-1 border border-blue-200 dark:border-gray-600">
                 <button
@@ -252,7 +266,7 @@ export default function Home() {
 
       <main className="flex flex-col sm:flex-row gap-8 items-start w-full max-w-7xl">
         {mode === 'fetchToCurl' ? (
-          <FetchToCurl />
+          <FetchToCurl demoText={demoText.fetchToCurl} />
         ) : mode === 'tryParseJson' ? (
           <JsonParser />
         ) : (

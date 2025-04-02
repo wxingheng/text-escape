@@ -36,7 +36,7 @@ export default function VisitorStats() {
             const value = element.textContent || '0';
             if (value !== '加载中...') {
               element.textContent = amplifyNumber(value, element.id);
-              // console.log(value,  amplifyNumber(value, element.id));
+              console.log("加载中...", value,  amplifyNumber(value, element.id));
             }
           }
         }
