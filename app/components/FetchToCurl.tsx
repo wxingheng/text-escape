@@ -38,7 +38,7 @@ export default function FetchToCurl() {
     try {
       await navigator.clipboard.writeText(curlCommand);
       alert('已复制到剪贴板');
-    } catch (err) {
+    } catch {
       alert('复制失败');
     }
   };
