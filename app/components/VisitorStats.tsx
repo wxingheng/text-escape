@@ -35,8 +35,8 @@ export default function VisitorStats() {
           if (element.id === 'busuanzi_value_site_pv' || element.id === 'busuanzi_value_site_uv') {
             const value = element.textContent || '0';
             if (value !== '加载中...') {
-              // element.textContent = amplifyNumber(value, element.id);
-              console.log(value,  amplifyNumber(value, element.id));
+              element.textContent = amplifyNumber(value, element.id);
+              // console.log(value,  amplifyNumber(value, element.id));
             }
           }
         }
