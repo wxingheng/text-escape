@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import pkg from '../../package.json';
 
 // 为百度统计声明全局类型
@@ -13,6 +13,9 @@ declare global {
 }
 
 export default function VisitorStats() {
+  // 添加一个 ref 来跟踪是否已经放大过数字
+  const amplifiedRef = useRef<{[key: string]: boolean}>({});
+
   useEffect(() => {
     // 等待百度统计脚本加载完成
     const checkHmt = () => {
@@ -34,9 +37,11 @@ export default function VisitorStats() {
           const element = mutation.target as HTMLElement;
           if (element.id === 'busuanzi_value_site_pv' || element.id === 'busuanzi_value_site_uv') {
             const value = element.textContent || '0';
-            if (value !== '加载中...') {
+            if (value !== '加载中...' && !amplifiedRef.current[element.id]) {
               element.textContent = amplifyNumber(value, element.id);
-              console.log("加载中...", value,  amplifyNumber(value, element.id));
+              // 标记这个元素已经被放大过
+              amplifiedRef.current[element.id] = true;
+              console.log(`${element.id} 原始值: ${value}, 放大后: ${amplifyNumber(value, element.id)}`);
             }
           }
         }
