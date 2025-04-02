@@ -62,6 +62,8 @@ export default function Home() {
   const fillDemoText = () => {
     if (mode === 'jsonStringify') {
       setInputText(JSON.stringify(demoText.jsonStringify, null, 2));
+    } else if (mode === 'tryParseJson') {
+      setInputText(demoText.tryParseJson);
     } else {
       setInputText(demoText[mode]);
     }
@@ -268,7 +270,7 @@ export default function Home() {
         {mode === 'fetchToCurl' ? (
           <FetchToCurl demoText={demoText.fetchToCurl} />
         ) : mode === 'tryParseJson' ? (
-          <JsonParser />
+          <JsonParser demoText={inputText} />
         ) : (
           <>
             <div className="flex-1">

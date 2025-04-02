@@ -1,13 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { tryParseJson } from '../utils/tryParseJson';
 
-export default function JsonParser() {
+interface JsonParserProps {
+  demoText?: string;
+}
+
+export default function JsonParser({ demoText }: JsonParserProps) {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [copyStatus, setCopyStatus] = useState('复制');
+
+  useEffect(() => {
+    if (demoText) {
+      setInputText(demoText);
+      handleParse(demoText);
+    }
+  }, [demoText, setInputText]);
 
   const showMessage = (msg: string, isError = false) => {
     setMessage(msg);
@@ -18,15 +30,14 @@ export default function JsonParser() {
     }, 3000);
   };
 
-  const handleParse = () => {
+  const handleParse = (text: string = inputText) => {
     try {
-      if (!inputText.trim()) {
+      if (!text.trim()) {
         showMessage('请输入需要解析的文本', true);
         return;
       }
-      const result = tryParseJson(inputText);
+      const result = tryParseJson(text);
       
-      // 尝试解析结果，验证是否为合法的 JSON
       try {
         JSON.parse(result);
         setOutputText(result);
@@ -44,27 +55,36 @@ export default function JsonParser() {
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(outputText);
-      showMessage('已复制到剪贴板');
+      setCopyStatus('已复制！');
+      setTimeout(() => setCopyStatus('复制'), 2000);
     } catch {
-      showMessage('复制失败', true);
+      setCopyStatus('复制失败');
+      setTimeout(() => setCopyStatus('复制'), 2000);
     }
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-4 space-y-4">
+    <div className="flex flex-col sm:flex-row gap-8 items-start w-full">
       {message && (
-        <div className={`p-2 rounded-md text-sm ${error ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+        <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 p-2 rounded-md text-sm z-50 ${
+          error ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+        }`}>
           {message}
         </div>
       )}
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-700">
-          输入文本：
-        </label>
+      <div className="flex-1">
+        <div className="h-[34px] mb-2 flex items-center">
+          <h2 className="text-lg font-semibold dark:text-white">
+            输入文本
+          </h2>
+        </div>
         <textarea
-          className="w-full h-32 p-2 border rounded-md font-mono text-sm"
+          className="w-full h-[600px] p-4 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-200 font-mono text-sm"
           value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={(e) => {
+            setInputText(e.target.value);
+            handleParse(e.target.value);
+          }}
           placeholder={`可以输入普通字符串或带有代码块的文本，如：
 \`\`\`json
 {
@@ -75,34 +95,25 @@ export default function JsonParser() {
 `}
         />
       </div>
-
-      <div className="flex space-x-4">
-        <button
-          onClick={handleParse}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
-        >
-          解析
-        </button>
-      </div>
-
-      {outputText && (
-        <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <label className="block text-sm font-medium text-gray-700">
-              解析结果：
-            </label>
-            <button
-              onClick={copyToClipboard}
-              className="text-sm text-blue-500 hover:text-blue-600"
-            >
-              复制
-            </button>
-          </div>
-          <pre className="w-full p-2 bg-gray-100 rounded-md overflow-x-auto font-mono text-sm">
-            {outputText}
-          </pre>
+      <div className="flex-1">
+        <div className="h-[34px] mb-2 flex justify-between items-center">
+          <h2 className="text-lg font-semibold dark:text-white">
+            解析结果
+          </h2>
+          <button
+            onClick={copyToClipboard}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            {copyStatus}
+          </button>
         </div>
-      )}
+        <textarea
+          className="w-full h-[600px] p-4 border border-gray-300 dark:border-gray-600 rounded-lg resize-none bg-gray-50 dark:bg-gray-800 font-mono text-sm dark:text-gray-200"
+          value={outputText}
+          readOnly
+          placeholder="解析结果将显示在这里..."
+        />
+      </div>
     </div>
   );
 } 
