@@ -26,31 +26,32 @@ export default function VisitorStats() {
     checkHmt();
   }, []);
 
-  // useEffect(() => {
-  //   // 监听访问量和访客数的变化
-  //   const observer = new MutationObserver((mutations) => {
-  //     mutations.forEach((mutation) => {
-  //       if (mutation.type === 'characterData' || mutation.type === 'childList') {
-  //         const element = mutation.target as HTMLElement;
-  //         if (element.id === 'busuanzi_value_site_pv' || element.id === 'busuanzi_value_site_uv') {
-  //           const value = element.textContent || '0';
-  //           if (value !== '加载中...') {
-  //             element.textContent = amplifyNumber(value, element.id);
-  //           }
-  //         }
-  //       }
-  //     });
-  //   });
+  useEffect(() => {
+    // 监听访问量和访客数的变化
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'characterData' || mutation.type === 'childList') {
+          const element = mutation.target as HTMLElement;
+          if (element.id === 'busuanzi_value_site_pv' || element.id === 'busuanzi_value_site_uv') {
+            const value = element.textContent || '0';
+            if (value !== '加载中...') {
+              // element.textContent = amplifyNumber(value, element.id);
+              console.log(value,  amplifyNumber(value, element.id));
+            }
+          }
+        }
+      });
+    });
 
-  //   // 开始观察
-  //   const pvElement = document.getElementById('busuanzi_value_site_pv');
-  //   const uvElement = document.getElementById('busuanzi_value_site_uv');
+    // 开始观察
+    const pvElement = document.getElementById('busuanzi_value_site_pv');
+    const uvElement = document.getElementById('busuanzi_value_site_uv');
     
-  //   if (pvElement) observer.observe(pvElement, { characterData: true, childList: true, subtree: true });
-  //   if (uvElement) observer.observe(uvElement, { characterData: true, childList: true, subtree: true });
+    if (pvElement) observer.observe(pvElement, { characterData: true, childList: true, subtree: true });
+    if (uvElement) observer.observe(uvElement, { characterData: true, childList: true, subtree: true });
 
-  //   return () => observer.disconnect();
-  // }, []);
+    return () => observer.disconnect();
+  }, []);
 
   // 格式化时间字符串
   const formatTime = (timeStr: string) => {
@@ -58,13 +59,13 @@ export default function VisitorStats() {
   };
 
   // 放大显示的数字
-  // const amplifyNumber = (value: string, elementId: string) => {
-  //   if (value === '加载中...') return value;
-  //   const num = parseInt(value);
-  //   // 如果是访问量元素，加470000；如果是访客数元素，加13000
-  //   const base = elementId === 'busuanzi_value_site_pv' ? 470000 : 13000;
-  //   return (num + base).toLocaleString();
-  // };
+  const amplifyNumber = (value: string, elementId: string) => {
+    if (value === '加载中...') return value;
+    const num = parseInt(value);
+    // 如果是访问量元素，加470000；如果是访客数元素，加13000
+    const base = elementId === 'busuanzi_value_site_pv' ? 470000 : 13000;
+    return (num + base).toLocaleString();
+  };
 
   return (
     <div className="fixed bottom-4 right-4 text-sm text-gray-500">
