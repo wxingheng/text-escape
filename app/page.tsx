@@ -10,7 +10,7 @@ import BookmarkHint from './components/BookmarkHint';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
-  const [copyStatus, setCopyStatus] = useState('复制');
+  const [copyStatus, setCopyStatus] = useState('Copy');
   const [mode, setMode] = useState<'escape' | 'unescape' | 'jsonParse' | 'jsonStringify' | 'fetchToCurl' | 'tryParseJson'>('escape');
 
   // 示例文本
@@ -126,11 +126,11 @@ export default function Home() {
     const convertedText = convertText(inputText);
     try {
       await navigator.clipboard.writeText(convertedText);
-      setCopyStatus('已复制！');
-      setTimeout(() => setCopyStatus('复制'), 2000);
+      setCopyStatus('Copied!');
+      setTimeout(() => setCopyStatus('Copy'), 2000);
     } catch {
-      setCopyStatus('复制失败');
-      setTimeout(() => setCopyStatus('复制'), 2000);
+      setCopyStatus('Failed');
+      setTimeout(() => setCopyStatus('Copy'), 2000);
     }
   };
 
