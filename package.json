@@ -7,10 +7,15 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p ${PORT:-3005}",
     "lint": "next lint",
     "postbuild": "next-sitemap",
-    "version-auto": "jcommon-node -va -t"
+    "version-auto": "jcommon-node -va -t",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop text-escape",
+    "pm2:restart": "pm2 restart text-escape",
+    "pm2:logs": "pm2 logs text-escape",
+    "pm2:status": "pm2 status"
   },
   "dependencies": {
     "next": "15.1.2",
