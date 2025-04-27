@@ -82,11 +82,11 @@ export default function RootLayout({
           __html: `
             var _hmt = _hmt || [];
             (function() {
-              var hm = document.createElement("script");
-              hm.src = "https://hm.baidu.com/hm.js?YOUR_BAIDU_TONGJI_ID";
-              var s = document.getElementsByTagName("script")[0]; 
-              s.parentNode.insertBefore(hm, s);
-            })();
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?fde766d8f0ffe2b33ce6b4519b20d326";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+          })();
           `
         }} />
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
