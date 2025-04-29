@@ -1,17 +1,35 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function VideoTools() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [videoUrl, setVideoUrl] = useState<string | null>(null)
   const [progress, setProgress] = useState(0)
   const [outputFormat, setOutputFormat] = useState('mp4')
   const [isConverting, setIsConverting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  // 清理视频URL
+  useEffect(() => {
+    return () => {
+      if (videoUrl) {
+        URL.revokeObjectURL(videoUrl)
+      }
+    }
+  }, [videoUrl])
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0])
+      const file = e.target.files[0]
+      setSelectedFile(file)
       setError(null)
+
+      // 创建新的视频URL
+      if (videoUrl) {
+        URL.revokeObjectURL(videoUrl)
+      }
+      const newVideoUrl = URL.createObjectURL(file)
+      setVideoUrl(newVideoUrl)
     }
   }
 
@@ -63,7 +81,7 @@ export default function VideoTools() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">视频工具</h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="space-y-8">
         {/* 视频转换工具 */}
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-4">视频格式转换</h2>
@@ -78,6 +96,26 @@ export default function VideoTools() {
                 disabled={isConverting}
               />
             </div>
+
+            {videoUrl && (
+              <div className="mt-4">
+                <div className="relative" style={{ width: '1200px', height: '699px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 dark:from-blue-600 dark:to-purple-700 rounded-lg flex items-center justify-center">
+                    <video
+                      src={videoUrl}
+                      className="absolute inset-0 w-full h-full object-contain rounded-lg"
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                    />
+                  </div>
+                </div>
+                <p className="text-sm text-gray-500 mt-2">
+                  视频预览 - {selectedFile?.name}
+                </p>
+              </div>
+            )}
             
             <div>
               <label className="block text-sm font-medium mb-2">输出格式</label>
