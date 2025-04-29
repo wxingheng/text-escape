@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import GitHubLink from './components/GitHubLink';
 import VisitorStats from './components/VisitorStats';
+import Navigation from './components/Navigation';
+import FriendLinks from './components/FriendLinks';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -96,7 +98,9 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <GitHubLink />
+        <Navigation />
         {children}
+        <FriendLinks />
         <VisitorStats />
       </body>
     </html>

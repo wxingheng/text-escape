@@ -7,6 +7,7 @@ import { useState } from "react";
 import FetchToCurl from './components/FetchToCurl';
 import JsonParser from './components/JsonParser';
 import BookmarkHint from './components/BookmarkHint';
+import Link from 'next/link';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -433,28 +434,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-gray-500 dark:text-gray-400 shrink-0">友情链接：</span>
-            <div className="flex flex-wrap gap-4">
-              <a
-                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 hover:underline hover:underline-offset-4 transition-colors"
-                href="https://markdown-to-image-serve.jcommon.top"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  aria-hidden
-                  src="/file.svg"
-                  alt="File icon"
-                  width={16}
-                  height={16}
-                />
-                <span>Markdown转图片工具</span>
-              </a>
-            </div>
-          </div>
-        </div>
+     
       </footer>
     </div>
   );
