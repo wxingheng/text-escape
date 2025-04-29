@@ -100,8 +100,23 @@ export default function RootLayout({
         <GitHubLink />
         <Navigation />
         {children}
-        <FriendLinks />
-        <VisitorStats />
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center space-y-4 py-8 border-t border-gray-200 dark:border-gray-700">
+            <FriendLinks />
+            <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+              <a 
+                href="https://beian.miit.gov.cn/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              >
+                鄂ICP备2022018193号-3
+              </a>
+              <span>|</span>
+              <VisitorStats />
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );
