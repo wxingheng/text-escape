@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { tryParseJson } from '../utils/tryParseJson';
 
 interface JsonParserProps {
@@ -14,23 +14,17 @@ export default function JsonParser({ demoText }: JsonParserProps) {
   const [message, setMessage] = useState('');
   const [copyStatus, setCopyStatus] = useState('复制');
 
-  useEffect(() => {
-    if (demoText) {
-      setInputText(demoText);
-      handleParse(demoText);
-    }
-  }, [demoText, setInputText]);
 
-  const showMessage = (msg: string, isError = false) => {
+  const showMessage = useCallback((msg: string, isError = false) => {
     setMessage(msg);
     setError(isError ? msg : '');
     setTimeout(() => {
       setMessage('');
       if (isError) setError('');
     }, 3000);
-  };
+  }, []);
 
-  const handleParse = (text: string = inputText) => {
+  const handleParse = useCallback((text: string = inputText) => {
     try {
       if (!text.trim()) {
         showMessage('请输入需要解析的文本', true);
@@ -50,7 +44,15 @@ export default function JsonParser({ demoText }: JsonParserProps) {
       showMessage('解析失败：格式错误', true);
       setOutputText('');
     }
-  };
+  }, [inputText, setOutputText, showMessage]);
+
+  useEffect(() => {
+    if (demoText) {
+      setInputText(demoText);
+      handleParse(demoText);
+    }
+  }, [demoText, setInputText, handleParse]);
+
 
   const copyToClipboard = async () => {
     try {

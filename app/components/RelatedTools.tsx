@@ -32,6 +32,7 @@ export default function RelatedTools() {
           <Link
             key={tool.url}
             href={tool.url}
+            target="_blank"
             className="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors"
           >
             <div className="flex items-center space-x-3">

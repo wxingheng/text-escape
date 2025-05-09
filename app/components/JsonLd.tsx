@@ -1,10 +1,9 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation'; // 移除未使用的导入
 
 export default function JsonLd() {
-  const pathname = usePathname();
-  const isHomePage = pathname === '/';
+  // const pathname = usePathname(); // 移除未使用变量
 
   const jsonLd = {
     '@context': 'https://schema.org',

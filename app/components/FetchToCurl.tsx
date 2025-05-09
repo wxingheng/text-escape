@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { fetchToCurl } from '../utils/fetchToCurl';
 
 interface FetchToCurlProps {
@@ -14,23 +14,16 @@ export default function FetchToCurl({ demoText }: FetchToCurlProps) {
   const [message, setMessage] = useState('');
   const [copyStatus, setCopyStatus] = useState('复制');
 
-  useEffect(() => {
-    if (demoText) {
-      setFetchCode(demoText);
-      handleConvert(demoText);
-    }
-  }, [demoText, setFetchCode]);
-
-  const showMessage = (msg: string, isError = false) => {
+  const showMessage = useCallback((msg: string, isError = false) => {
     setMessage(msg);
     setError(isError ? msg : '');
     setTimeout(() => {
       setMessage('');
       if (isError) setError('');
     }, 3000);
-  };
+  }, []);
 
-  const handleConvert = (code: string = fetchCode) => {
+  const handleConvert = useCallback((code: string = fetchCode) => {
     try {
       setError('');
       const formattedCode = code.split('\n')
@@ -57,7 +50,14 @@ export default function FetchToCurl({ demoText }: FetchToCurlProps) {
       setError(err instanceof Error ? err.message : '转换失败');
       showMessage(err instanceof Error ? err.message : '转换失败', true);
     }
-  };
+  }, [fetchCode, setError, setCurlCommand, showMessage]);
+
+  useEffect(() => {
+    if (demoText) {
+      setFetchCode(demoText);
+      handleConvert(demoText);
+    }
+  }, [demoText, setFetchCode, handleConvert]);
 
   const copyToClipboard = async () => {
     try {

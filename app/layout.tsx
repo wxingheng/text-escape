@@ -142,8 +142,8 @@ export default function RootLayout({
           {children}
         </div>
         <QuickTip />
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center space-y-4 py-8 border-t border-gray-200 dark:border-gray-700">
+        <div className="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50">
+          <div className="container mx-auto px-4 py-4 flex flex-col items-center space-y-2">
             <FriendLinks />
             <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
               <a 
@@ -154,8 +154,8 @@ export default function RootLayout({
               >
                 鄂ICP备2022018193号-3
               </a>
-              {/* <span>|</span>
-              <VisitorStats /> */}
+              <span>|</span>
+              <VisitorStats />
             </div>
           </div>
         </div>

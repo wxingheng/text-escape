@@ -6,7 +6,7 @@ export default function GitHubLink() {
       href="https://github.com/wxingheng/text-escape"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors"
+      className="fixed top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors z-[1001]"
       title="查看源代码"
     >
       <svg
