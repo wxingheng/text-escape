@@ -8,6 +8,8 @@ import FetchToCurl from './components/FetchToCurl';
 import JsonParser from './components/JsonParser';
 import BookmarkHint from './components/BookmarkHint';
 import Link from 'next/link';
+import RelatedTools from './components/RelatedTools';
+import KeywordOptimization from './components/KeywordOptimization';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -319,6 +321,8 @@ export default function Home() {
       </main>
 
       <footer className="w-full max-w-7xl">
+        <RelatedTools />
+        <KeywordOptimization />
         <div className="mb-8">
           <h3 className="text-lg font-semibold mb-4 dark:text-white">API 使用说明</h3>
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg space-y-6">
@@ -433,8 +437,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-     
       </footer>
     </div>
   );

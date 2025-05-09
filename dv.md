@@ -1,0 +1,1 @@
+curl -H 'Content-Type:text/plain' --data-binary @urls.txt "http://data.zz.baidu.com/urls?site=https://text-escape.jcommon.top&token=Ce9lijsmmj0KydIb"
