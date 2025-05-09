@@ -1,8 +1,8 @@
-'use client';
+"use client"
 
 import { useState, useEffect } from 'react';
 
-export default function BookmarkHint() {
+export default function QuickTip() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -14,12 +14,9 @@ export default function BookmarkHint() {
   const handleBookmark = () => {
     const title = document.title;
     const url = window.location.href;
-
     if (navigator.userAgent.toLowerCase().indexOf('mac') !== -1) {
-      // Mac 用户
       alert(`请按 Command (⌘) + D 将本页添加到收藏夹\n\n标题：${title}\n网址：${url}`);
     } else {
-      // Windows/Linux 用户
       alert(`请按 Ctrl + D 将本页添加到收藏夹\n\n标题：${title}\n网址：${url}`);
     }
   };
@@ -28,7 +25,7 @@ export default function BookmarkHint() {
 
   return (
     <div 
-      className="fixed bottom-20 right-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 max-w-xs"
+      className="fixed bottom-20 right-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 max-w-xs z-[1100]"
       style={{ 
         boxShadow: '0 0 15px rgba(0,0,0,0.1), 0 0 30px rgba(59, 130, 246, 0.2)'
       }}
@@ -45,7 +42,7 @@ export default function BookmarkHint() {
             <span>收藏本站</span>
           </button>
           <span className="text-sm text-gray-500 dark:text-gray-400">
-            {navigator.userAgent.toLowerCase().indexOf('mac') !== -1 ? '⌘ + D' : 'Ctrl + D'}
+            {typeof window !== 'undefined' && navigator.userAgent.toLowerCase().indexOf('mac') !== -1 ? '⌘ + D' : 'Ctrl + D'}
           </span>
         </div>
         <div className="text-sm text-gray-500 dark:text-gray-400">

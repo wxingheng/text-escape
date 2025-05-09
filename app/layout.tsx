@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import FriendLinks from './components/FriendLinks';
 import JsonLd from './components/JsonLd';
 import PerformanceMonitor from './components/PerformanceMonitor';
+import QuickTip from './components/QuickTip';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -131,13 +132,16 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden`}
         suppressHydrationWarning
       >
         <PerformanceMonitor />
         <GitHubLink />
         <Navigation />
-        {children}
+        <div className="pt-16 h-[calc(100vh-64px)] overflow-auto">
+          {children}
+        </div>
+        <QuickTip />
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center space-y-4 py-8 border-t border-gray-200 dark:border-gray-700">
             <FriendLinks />

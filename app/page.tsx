@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useState } from "react";
 import FetchToCurl from './components/FetchToCurl';
 import JsonParser from './components/JsonParser';
-import BookmarkHint from './components/BookmarkHint';
 import Link from 'next/link';
 import RelatedTools from './components/RelatedTools';
 import KeywordOptimization from './components/KeywordOptimization';
@@ -147,7 +146,6 @@ export default function Home() {
 
   return (
     <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)] dark:bg-gray-900">
-      <BookmarkHint />
       <header className="w-full max-w-7xl">
         <h1 className="text-3xl font-bold text-center mb-4 dark:text-white">
           文本转义工具 - 在线文本转义/反转义工具
