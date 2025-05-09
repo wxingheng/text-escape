@@ -9,6 +9,8 @@ export default function Navigation() {
   const navItems = [
     { name: '文本工具', path: '/' },
     { name: '视频工具', path: '/video' },
+    { name: 'AI 工具', path: '/ai' },
+    { name: '图片工具', path: '/image' },
   ]
 
   return (
