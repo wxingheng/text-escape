@@ -4,7 +4,7 @@ export default function FriendLinks() {
   const links = [
     {
       name: 'Markdown转图片工具',
-      url: 'https://md2img.jcommon.top',
+      url: 'https://markdown-to-image-serve.jcommon.top',
       icon: '📝'
     },
     // 可以在这里添加更多友情链接

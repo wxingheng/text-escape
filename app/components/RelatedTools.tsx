@@ -12,13 +12,13 @@ const tools = [
   {
     name: 'Markdown 转图片',
     description: '将 Markdown 文档转换为图片',
-    url: 'https://md2img.jcommon.top',
+    url: 'https://markdown-to-image-serve.jcommon.top',
     icon: '🖼️'
   },
   {
     name: '视频格式转换',
     description: '在线视频格式转换工具',
-    url: '/video',
+    url: 'https://video-format-convert.jcommon.top',
     icon: '🎥'
   }
 ];

@@ -150,8 +150,8 @@ export default function RootLayout({
               >
                 鄂ICP备2022018193号-3
               </a>
-              <span>|</span>
-              <VisitorStats />
+              {/* <span>|</span>
+              <VisitorStats /> */}
             </div>
           </div>
         </div>
