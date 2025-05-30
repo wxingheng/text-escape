@@ -12,6 +12,9 @@
 
 - 预览地址：[https://text-escape.jcommon.top](https://text-escape.jcommon.top)
 
+- ![image](https://github.com/user-attachments/assets/81ac6073-32f4-4a3c-8ddd-fc7af0f65126)
+
+
 ## ✨ 核心特性
 
 - 🔍 SEO 优化配置
